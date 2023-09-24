@@ -9,6 +9,18 @@ const steps = [
 const Steps = () => {
   const router = useRouter();
 
+  const progressBar = () => {
+    let value;
+    if (router.pathname === "/") {
+      value = 10;
+    } else if (router.pathname === "/summary") {
+      value = 50;
+    } else {
+      value = 100;
+    }
+    return value;
+  };
+
   return (
     <>
       <div className='flex justify-between mb-5'>
@@ -23,6 +35,12 @@ const Steps = () => {
             {step.name}
           </button>
         ))}
+      </div>
+      <div className='bg-gray-100 mb-10'>
+        <div
+          className='rounded-full bg-amber-500 text-xs leading-none h-2 text-center text-white'
+          style={{ width: `${progressBar()}%` }}
+        ></div>
       </div>
     </>
   );
